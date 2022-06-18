@@ -4,11 +4,15 @@ import Registration from "./components/Registration";
 import Login from "./components/Login";
 import { Routes, Route } from "react-router-dom";
 import MyAccount from "./components/MyAccount";
+
 function App() {
   return (
     <div className="App">
-      <Registration />
-      {/* <MyAccount /> */}
+      <Routes>
+        <Route path="/registration" element={<Registration />}></Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/myaccount" element={<MyAccount />}></Route>
+      </Routes>
     </div>
   );
 }

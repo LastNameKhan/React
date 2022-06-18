@@ -1,8 +1,24 @@
 import React, { useState } from "react";
-import { FormControl, FormLabel, Input, Button, Alert } from "@chakra-ui/react";
+import {
+  FormControl,
+  FormLabel,
+  Input,
+  Button,
+  Alert,
+  Flex,
+  Box,
+  Spacer,
+} from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import MyAccount from "./MyAccount";
+import { useEffect } from "react";
+import { CloseIcon, MinusIcon } from "@chakra-ui/icons";
 const Login = () => {
+  //   const [items, setItems] = useState([]);
+
+  // useEffect(() => {
+  //   localStorage.setItem('items', JSON.stringify(items));
+  // }, [items]);
   const [emaillog, setEmaillog] = useState(" ");
   const [passwordlog, setPasswordlog] = useState(" ");
   const [flag, setFlag] = useState(false);
@@ -25,10 +41,29 @@ const Login = () => {
   }
 
   return (
-    <div>
+    <div className="loginmaindiv">
       {" "}
       {myaccount ? (
         <form onSubmit={handleLogin}>
+          <div style={{ background: "black", height: "100px" }}>
+            <Flex>
+              <Box
+                p="4"
+                bg="black"
+                color="white"
+                marginTop="10px"
+                fontSize="30px"
+                fontWeight="bold"
+              >
+                SIGN IN<h3>{}</h3>
+              </Box>
+              <Spacer />
+              <Box p="4" bg="black" color="white" marginTop="20px">
+                CLOSE
+                <CloseIcon className="closeiconfromchakra" />
+              </Box>
+            </Flex>
+          </div>
           <div>
             <FormControl isRequired>
               <FormLabel htmlFor="first-name" fontWeight="450" color="black">

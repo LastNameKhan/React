@@ -18,6 +18,7 @@ import {
   faGooglePlusSquare,
 } from "@fortawesome/free-brands-svg-icons";
 import { CloseIcon, MinusIcon } from "@chakra-ui/icons";
+
 import MyAccount from "./MyAccount";
 
 const Registration = () => {
@@ -34,6 +35,8 @@ const Registration = () => {
       setFlag(true);
     } else {
       setFlag(false);
+      localStorage.setItem("lastname", JSON.stringify(lastname));
+      localStorage.setItem("firstname", JSON.stringify(firstname));
       localStorage.setItem("Email", JSON.stringify(email));
       localStorage.setItem("Password", JSON.stringify(password));
 
@@ -66,7 +69,6 @@ const Registration = () => {
                 <Box p="4" bg="black" color="white" marginTop="20px">
                   CLOSE
                   <CloseIcon className="closeiconfromchakra" />
-                  <MinusIcon></MinusIcon>
                 </Box>
               </Flex>
             </div>

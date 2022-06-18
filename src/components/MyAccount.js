@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
 import { Box } from "@chakra-ui/react";
 import "./MyAccount.css";
 import {
@@ -8,10 +9,29 @@ import {
   BreadcrumbSeparator,
   Center,
 } from "@chakra-ui/react";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faHouse, faHouseChimney } from "@fortawesome/free-solid-svg-icons";
-import { faUser } from "@fortawesome/free-regular-svg-icons";
+import {
+  faCheck,
+  faHouse,
+  faHouseChimney,
+} from "@fortawesome/free-solid-svg-icons";
+
 const MyAccount = () => {
+  const [lastname, setLastName] = useState([]);
+  const [firstname, setFirstName] = useState([]);
+  const [email, setEmail] = useState([]);
+  useEffect(() => {
+    const email = JSON.parse(localStorage.getItem("Email"))
+    const lastname = JSON.parse(localStorage.getItem("lastname"));
+    const firstname = JSON.parse(localStorage.getItem("firstname"));
+    if (firstname || lastname) {
+      setFirstName(firstname);
+      setLastName(lastname);
+      setEmail(email)
+    }
+  }, []);
+
   return (
     <div className="myaccountmaindiv">
       <div className="myaccountdiv">
@@ -35,18 +55,26 @@ const MyAccount = () => {
       </div>
       <br />
       <div>
-      <Center h="50px" color="black" className="topfirstdivmyaccount">
-        <h3>Hello Aman Khan (not Aman Khan ? Signout)</h3>
-      </Center>
-      <Center h="50px" color="black" className="topfirstdivmyaccount">
-        <h3>Order History :</h3>
-      </Center>
-      <Center h="50px" color="black" className="topthirdtextmyaccount">
-        <h3><FontAwesomeIcon className="tickarrow" icon={faCheck}></FontAwesomeIcon>No order has been made yet.</h3>
-      </Center>
-      <Center h="50px" color="black" className="topfirstdivmyaccount">
-        <h3>Account details:</h3>
-      </Center>
+        <Center h="50px" color="black" className="topfirstdivmyaccount">
+          <h3>
+            <span>Hello {firstname + " " + lastname}</span>
+          </h3>
+        </Center>
+        <Center h="50px" color="black" className="topfirstdivmyaccount">
+          <h3>Order History :</h3>
+        </Center>
+        <Center h="50px" color="black" className="topthirdtextmyaccount">
+          <h3>
+            <FontAwesomeIcon
+              className="tickarrow"
+              icon={faCheck}
+            ></FontAwesomeIcon>
+            No order has been made yet.
+          </h3>
+        </Center>
+        <Center h="50px" color="black" className="topfirstdivmyaccount">
+          <h3>Account details:</h3>
+        </Center>
       </div>
       <div>
         <Box
@@ -86,6 +114,22 @@ const MyAccount = () => {
         >
           LOG OUT
         </Box>
+        <Center h="50px" color="black" className="bottomnamediv">
+          <h3 className="boldtagname">Name :</h3><span>{firstname}</span>
+        </Center>
+        <div className="bordergreyafterdiv"></div>
+        <Center h="50px" color="black" className="bottomnamediv1">
+          <h3 className="boldtagname">Email :</h3><span>{email}</span>
+        </Center>
+        <div className="bordergreyafterdiv"></div>
+        <Center h="50px" color="black" className=".bottomnamediv">
+          <h3>Order Address :</h3>
+        </Center>
+        <div className="bordergreyafterdiv"></div>
+        <Center h="50px" color="black" className=".bottomnamediv">
+          <h3>Order Address2 :</h3>
+        </Center>
+        <div className="bordergreyafterdiv"></div>
       </div>
     </div>
   );
